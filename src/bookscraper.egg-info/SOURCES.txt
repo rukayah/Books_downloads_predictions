@@ -1,0 +1,8 @@
+LICENSE
+README.md
+setup.py
+src/bookscraper.py
+src/bookscraper.egg-info/PKG-INFO
+src/bookscraper.egg-info/SOURCES.txt
+src/bookscraper.egg-info/dependency_links.txt
+src/bookscraper.egg-info/top_level.txt
