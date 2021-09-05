@@ -9,25 +9,27 @@ class ScraperError(Exception):
     pass
 
 class Webscraping:
+    """The Webscraping class represent an instance of scraping a website"""
 
     def __init__(self) -> None:
+        """Method for initializing a Webscraping object"""
         self.dataframe = None
         self.keyword = None
 
     def extract(self,num_items:int, keyword:str):
         """
-        A basic web-scraper on scraping Ebay data based on specific category ie dress, bicycle.
+        A basic web-scraper on scraping pdf drive website for information about books uploaded.
 
-        Parameters:
+        Args:
         num_items (int): The number of samples (observations) of data to be scraped.
-        The minimum samples for scraping is 50, as that is minimum per page
+        The minimum samples for scraping is 20, as that is minimum per page
 
         keyword (str): The name of the category of which the data is to be scraped.
         Currently only accepts single word as keyword.
 
         Returns:
-        pd.DataFrame: A DataFrame object that has title,price of the category,
-        item URL,image URL and category for the keyword entered.
+        pd.DataFrame: A DataFrame object that has title, number of pages, year published,
+        number of downloads and if it is recently uploaded on pdfdrive.
         """
         self.keyword = keyword
 
@@ -44,10 +46,7 @@ class Webscraping:
             url = f"https://www.pdfdrive.com/search?q={self.keyword}&pagecount=&pubyear=&searchin=&page="+str(page)
             source = requests.get(url, headers = {"User-Agent": "Mozilla/5.0"}).text
             soup = bs(source, "lxml")
-            #print(page)
-
-
-     
+        
             for book in soup.find_all('div', class_="file-right"):
                 title = book.h2.text
                 titles.append(title)
@@ -66,9 +65,6 @@ class Webscraping:
         )
         return self.dataframe
 
-scrape = Webscraping()
-#output = scrape.extract(50,"children")
-#output.to_csv("romance.csv")
 
 
   
