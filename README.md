@@ -11,7 +11,7 @@
 
         Returns:
         pd.DataFrame: A DataFrame object that has title, number of pages, year published,
-        number of downloads and if it is recently uploaded on pdfdrive.
+        number of downloads and if it is recently uploaded on pdfdrive(is_new).
   
 # Installation
 Run the following to install the book scraper: pip install git+https://github.com/rukayah/Books_scraper
